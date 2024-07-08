@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Login/Iniciar Sesión";
+    Layout = null;
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - appBodega</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/appBodega.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center">@ViewData["Title"]</h2>
+                </div>
+                <div class="card-body">
+                    <form method="POST" asp-action="Details">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input type="email" name="UserMail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input type="password" name="UserPassword" class="form-control" id="exampleInputPassword1" required>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" id="submitButton" class="btn btn-primary"> Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    const emailInput = document.getElementById("exampleInputEmail1");
+    const passwordInput = document.getElementById("exampleInputPassword1");
+    const submitButton = document.getElementById("submitButton");
+
+    emailInput.addEventListener("input", validateForm);
+    passwordInput.addEventListener("input", validateForm);
+
+    // Funcion para habilitar o deshabilitar el botón en función del contenido de los campos.
+    function validateForm() {
+        if (emailInput.value.length > 0 && passwordInput.value.length > 0) {
+            submitButton.removeAttribute("disabled");
+        } else {
+            submitButton.setAttribute("disabled", "disabled");
+        }
+    }
+</script>
